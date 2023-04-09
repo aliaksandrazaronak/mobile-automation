@@ -4,10 +4,14 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
+import io.qameta.allure.Allure;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.net.MalformedURLException;
 
@@ -39,8 +43,14 @@ public abstract class BaseTest {
     @AfterEach
     public void cleanUp() {
         log.info("Close webdriver");
+        takeScreenshot();
         getDriver().quit();
         removeDriver();
         service.stop();
+    }
+
+    private void takeScreenshot() {
+            Allure.addAttachment("Page failure screenshot", new ByteArrayInputStream(((TakesScreenshot)
+                    getDriver()).getScreenshotAs(OutputType.BYTES)));
     }
 }
