@@ -22,5 +22,5 @@ test {
         showStandardStreams = true
         events = ["passed", "failed", "skipped"]
     }
-    systemProperty "browser", "ANDROID"
+    systemProperty "browser", "CHROME"
 }
