@@ -1,5 +1,6 @@
 package driver;
 
+import business_objects.MobileDevice;
 import org.openqa.selenium.WebDriver;
 import property.PropertyLoader;
 
@@ -9,18 +10,18 @@ public class DriverManagerFactory {
 
     private static ThreadLocal<WebDriver> driverThreadHolder = new ThreadLocal<>();
 
-    public static synchronized void setDriver() throws MalformedURLException {
+    public static synchronized void setDriver(MobileDevice mobileDevice) throws MalformedURLException {
 
         WebDriver driver;
         String browserName = System.getProperty("browser", PropertyLoader.getProperty("test.environment.browser"));
 
         switch (browserName) {
             case "CHROME" -> {
-                driver = new ChromeDriverManager().getDriver();
+                driver = new ChromeDriverManager().getDriver(mobileDevice);
                 driverThreadHolder.set(driver);
             }
             case "ANDROID" -> {
-                driver = new AndroidDriverManager().getDriver();
+                driver = new AndroidDriverManager().getDriver(mobileDevice);
                 driverThreadHolder.set(driver);
             }
             default -> throw new IllegalArgumentException("Unrecognized browser is selected");
