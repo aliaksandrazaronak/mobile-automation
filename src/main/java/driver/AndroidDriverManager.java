@@ -14,7 +14,6 @@ public class AndroidDriverManager extends DriverManager {
         options.setUdid(mobileDevice.getUdid());
         options.setSystemPort(mobileDevice.getSystemPort());
         options.setApp("d:\\Projects\\parallel-tests\\Calculator.apk");
-        driver = new AndroidDriver(new URL("http://" + mobileDevice.getAppiumIpAddress() + ":" +
-                mobileDevice.getAppiumPort() + "/wd/hub"), options);
+        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
     }
 }

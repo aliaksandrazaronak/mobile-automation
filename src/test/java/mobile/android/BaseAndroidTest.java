@@ -7,7 +7,9 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import io.qameta.allure.Allure;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.OutputType;
@@ -24,26 +26,28 @@ import static driver.DriverManagerFactory.*;
 public abstract class BaseAndroidTest {
 
     protected AndroidDriver driver;
-    private AppiumDriverLocalService service;
+    private static AppiumDriverLocalService service;
 
     @RegisterExtension
     static AndroidExtension androidExtension = new AndroidExtension();
+
+    @BeforeAll
+    public static void startAppiumServer() {
+        service = new AppiumServiceBuilder()
+                .withIPAddress("127.0.0.1")
+                .usingPort(4723)
+                .withArgument(() -> "--base-path", "/wd/hub")
+                .withArgument(GeneralServerFlag.LOG_LEVEL, "info")
+                .usingDriverExecutable (new File("C:\\Program Files\\nodejs\\node.exe"))
+                .build();
+        service.start();
+    }
 
     @BeforeEach
     public void setUp() throws MalformedURLException {
         int deviceIndex = ThreadUtils.getThreadId();
         MobileDevice mobileDevice = androidExtension.getListOfConnectedAndroidMobileDevices().get(deviceIndex);
         log.info("MobileDevice instance for thread " + deviceIndex + " : " + mobileDevice);
-
-        service = new AppiumServiceBuilder()
-                .withIPAddress(mobileDevice.getAppiumIpAddress())
-                .usingPort(mobileDevice.getAppiumPort())
-                .withArgument(() -> "--base-path", "/wd/hub")
-                .withArgument(GeneralServerFlag.LOG_LEVEL, "info")
-                .usingDriverExecutable (new File("C:\\Program Files\\nodejs\\node.exe"))
-                .build();
-        service.start();
-
         setDriver(mobileDevice);
         driver = (AndroidDriver) getDriver();
     }
@@ -55,6 +59,10 @@ public abstract class BaseAndroidTest {
         takeScreenshot();
         getDriver().quit();
         removeDriver();
+    }
+
+    @AfterAll
+    public static void stopAppiumServer() {
         service.stop();
     }
 

@@ -8,7 +8,5 @@ import lombok.Data;
 public class MobileDevice {
 
     private String udid;
-    private int appiumPort;
-    private String appiumIpAddress;
     private int systemPort;
 }
