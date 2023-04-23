@@ -8,5 +8,6 @@ import lombok.Data;
 public class MobileDevice {
 
     private String udid;
+    private String platformName;
     private int systemPort;
 }

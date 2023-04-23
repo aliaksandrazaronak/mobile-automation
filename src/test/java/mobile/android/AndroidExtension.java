@@ -10,6 +10,7 @@ import java.util.List;
 public class AndroidExtension implements Extension {
 
     private static final int APPIUM_UIAUTOMATOR_SYSTEM_PORT = 8205;
+    private static final String ANDROID_PLATFORM_NAME = "Android";
 
     private List<String> getListOfConnectedAndroidDevices() {
         return ShellCommandsUtils.execCmd("adb devices");
@@ -22,6 +23,7 @@ public class AndroidExtension implements Extension {
         for (String device: connectedAndroidDevicesList) {
             MobileDevice mobileDevice = MobileDevice.builder()
                     .udid(device)
+                    .platformName(ANDROID_PLATFORM_NAME)
                     .systemPort(APPIUM_UIAUTOMATOR_SYSTEM_PORT + increment)
                     .build();
             mobileDeviceList.add(mobileDevice);
