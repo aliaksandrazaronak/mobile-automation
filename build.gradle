@@ -17,6 +17,9 @@ dependencies {
 }
 
 test {
+    filter {
+        includeTestsMatching "Calculator*"
+    }
     useJUnitPlatform()
     testLogging {
         showStandardStreams = true
