@@ -31,4 +31,36 @@ public class CalculatorTest extends BaseAndroidTest {
         assertEquals("1", results.getText(), "Result should be equals 1");
         log.info("Stopping running minus test");
     }
+
+    @Test
+    public void checkComplexPlusFunctionality() {
+        log.info("Starting running complex plus test");
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/digit_2")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/op_add")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/digit_3")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/op_add")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/digit_4")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/op_add")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/digit_1")).click();
+        WebElement results = driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_preview"));
+        assertEquals("10", results.getText(), "Result should be equals 10");
+        log.info("Stopping running complex plus test");
+    }
+
+    @Test
+    public void checkComplexMinusFunctionality() {
+        log.info("Starting running complex minus test");
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/digit_9")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/op_sub")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/digit_1")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/op_sub")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/digit_1")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/op_sub")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/digit_1")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/op_sub")).click();
+        driver.findElement(AppiumBy.id("com.google.android.calculator:id/digit_1")).click();
+        WebElement results = driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_preview"));
+        assertEquals("5", results.getText(), "Result should be equals 5");
+        log.info("Stopping running complex minus test");
+    }
 }

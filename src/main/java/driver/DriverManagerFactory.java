@@ -10,7 +10,7 @@ public class DriverManagerFactory {
 
     private static ThreadLocal<WebDriver> driverThreadHolder = new ThreadLocal<>();
 
-    public static synchronized void setDriver(MobileDevice mobileDevice) throws MalformedURLException {
+    public static void setDriver(MobileDevice mobileDevice) throws MalformedURLException {
 
         WebDriver driver;
         String browserName = System.getProperty("browser", PropertyLoader.getProperty("test.environment.browser"));
