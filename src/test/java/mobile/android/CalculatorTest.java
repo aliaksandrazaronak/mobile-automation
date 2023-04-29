@@ -29,7 +29,7 @@ public class CalculatorTest extends BaseAndroidTest {
         $(AppiumBy.id("com.google.android.calculator:id/digit_3")).click();
         $(AppiumBy.id("com.google.android.calculator:id/op_sub")).click();
         $(AppiumBy.id("com.google.android.calculator:id/digit_2")).click();
-        $(AppiumBy.id("com.google.android.calculator:id/result_preview")).shouldBe(Condition.text("2"));
+        $(AppiumBy.id("com.google.android.calculator:id/result_preview")).shouldBe(Condition.text("1"));
         log.info("Stopping running minus test");
     }
 
