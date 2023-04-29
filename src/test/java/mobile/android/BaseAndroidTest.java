@@ -1,6 +1,7 @@
 package mobile.android;
 
 import business_objects.MobileDevice;
+import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
@@ -50,6 +51,7 @@ public abstract class BaseAndroidTest {
         log.info("MobileDevice instance for thread " + deviceIndex + " : " + mobileDevice);
         setDriver(mobileDevice);
         driver = (AndroidDriver) getDriver();
+        WebDriverRunner.setWebDriver(driver);
     }
 
     @AfterEach
