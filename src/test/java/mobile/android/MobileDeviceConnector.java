@@ -7,7 +7,7 @@ import utils.ShellCommandsUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AndroidExtension implements Extension {
+public class MobileDeviceConnector implements Extension {
 
     private static final int APPIUM_UIAUTOMATOR_SYSTEM_PORT = 8205;
     private static final String ANDROID_PLATFORM_NAME = "Android";
