@@ -37,6 +37,8 @@ public abstract class BaseAndroidTest {
                 .usingPort(4723)
                 .withArgument(() -> "--base-path", "/wd/hub")
                 .withArgument(GeneralServerFlag.LOG_LEVEL, "info")
+                .withAppiumJS (
+                        new File (System.getProperty("user.home") + "\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
                 .usingDriverExecutable (new File("C:\\Program Files\\nodejs\\node.exe"))
                 .build();
         service.start();
