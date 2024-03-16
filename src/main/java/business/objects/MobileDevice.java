@@ -1,4 +1,4 @@
-package business_objects;
+package business.objects;
 
 import lombok.Builder;
 import lombok.Data;

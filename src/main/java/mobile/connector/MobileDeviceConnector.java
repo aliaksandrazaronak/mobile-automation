@@ -1,6 +1,6 @@
-package mobile.android;
+package mobile.connector;
 
-import business_objects.MobileDevice;
+import business.objects.MobileDevice;
 import org.junit.jupiter.api.extension.Extension;
 import utils.ShellCommandsUtils;
 

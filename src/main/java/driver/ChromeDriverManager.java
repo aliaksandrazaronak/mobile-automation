@@ -1,6 +1,6 @@
 package driver;
 
-import business_objects.MobileDevice;
+import business.objects.MobileDevice;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;

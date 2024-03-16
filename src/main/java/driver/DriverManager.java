@@ -1,6 +1,6 @@
 package driver;
 
-import business_objects.MobileDevice;
+import business.objects.MobileDevice;
 import org.openqa.selenium.WebDriver;
 
 import java.net.MalformedURLException;

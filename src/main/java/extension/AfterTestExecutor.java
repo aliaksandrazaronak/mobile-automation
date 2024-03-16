@@ -1,4 +1,4 @@
-package mobile.android;
+package extension;
 
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;

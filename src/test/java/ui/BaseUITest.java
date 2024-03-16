@@ -1,6 +1,6 @@
 package ui;
 
-import business_objects.MobileDevice;
+import business.objects.MobileDevice;
 import io.qameta.allure.Allure;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
