@@ -13,18 +13,31 @@ dependencies {
     implementation 'com.codeborne:selenide:6.12.3'
     implementation 'com.codeborne:selenide-appium:2.7.1'
     implementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.7.0'
+    implementation 'com.google.guava:guava:33.1.0-jre'
     testImplementation 'org.slf4j:slf4j-log4j12:2.0.7'
 }
 
-test {
-    filter {
-        includeTestsMatching "mobile.android.*"
-    }
+tasks.withType(Test).configureEach {
     useJUnitPlatform()
     outputs.upToDateWhen { false }
     testLogging {
         showStandardStreams = true
-        events = ["passed", "failed", "skipped"]
+        events = ["passed", "failed", "skipped", "standardOut"]
+        exceptionFormat = 'full'
+    }
+}
+
+tasks.register('androidTests', Test).configure {
+    filter {
+        includeTestsMatching "mobile.android.*"
     }
     systemProperty "browser", "ANDROID"
+}
+
+tasks.register('uiTests', Test).configure {
+    filter {
+        includeTestsMatching "ui.*"
+    }
+    systemProperty "browser", "CHROME"
 }
